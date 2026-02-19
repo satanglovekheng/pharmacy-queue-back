@@ -23,8 +23,8 @@ async function completedToday(req, res) {
 }
 
 async function complete(req, res) {
-  const { room_id } = req.body;
-  await service.completeMedication(req.params.id, room_id);
+
+  await service.completeMedication(req.params.id);
 
   getIO().emit("queueUpdated");
 

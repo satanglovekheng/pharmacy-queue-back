@@ -31,10 +31,10 @@ async function getCompletedToday(room_id) {
   return rows;
 }
 
-async function completeMedication(id, room_id) {
+async function completeMedication(id) {
   await pool.query(
-    "UPDATE medication_queue SET status='completed', completed_at=NOW() WHERE id=? AND room_id=?",
-    [id, room_id]
+    "UPDATE medication_queue SET status='completed', completed_at=NOW() WHERE id=?",
+    [id]
   );
 }
 
