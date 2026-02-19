@@ -10,17 +10,21 @@ async function create(req, res) {
 }
 
 async function pending(req, res) {
-  const data = await service.getPending();
+  const { room_id } = req.query;
+  const data = await service.getPending(room_id);
   res.json(data);
 }
 
+
 async function completedToday(req, res) {
-  const data = await service.getCompletedToday();
+  const { room_id } = req.query;
+  const data = await service.getCompletedToday(room_id);
   res.json(data);
 }
 
 async function complete(req, res) {
-  await service.completeMedication(req.params.id);
+  const { room_id } = req.body;
+  await service.completeMedication(req.params.id, room_id);
 
   getIO().emit("queueUpdated");
 
